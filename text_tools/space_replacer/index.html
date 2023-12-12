@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Transformer</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    #textbox {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <h1>Text Transformer</h1>
+
+    <button @click="transform">Transform Text</button><br>
+
+    <textarea v-model="inputText" id="textbox" placeholder="Type or paste text here..."></textarea>
+
+    <script>
+      // Function to modify the input string
+      function modifyString(inputString) {
+        // You can modify the string as needed
+        return inputString.toUpperCase(); // Example: Convert to uppercase
+      }
+
+      new Vue({
+        el: '#app',
+        data: {
+          inputText: '',
+        },
+        methods: {
+          transform: function() {
+            // Call the modifyString function
+            this.inputText = modifyString(this.inputText);
+          }
+        }
+      });
+    </script>
+  </div>
+
+</body>
+</html>
