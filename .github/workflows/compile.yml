@@ -1,0 +1,48 @@
+name: Arduino Build
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v4
+
+    - name: Checkout another repository
+      uses: actions/checkout@v4
+      with:
+        repository: serg-bloim/ps4rc  # Replace with the target repository
+        token: ${{ secrets.GITHUB_TOKEN }}  # GitHub Actions automatically provides a token
+        path: /data  # Directory where the repo will be checked out
+
+    # - name: Set up Arduino CLI
+    #   uses: arduino/arduino-cli-action@v1
+    #   with:
+    #     version: '0.26.0' # Specify the Arduino CLI version
+
+    # - name: Install Arduino libraries
+    #   run: |
+    #     arduino-cli lib install "SomeLibrary"
+
+    # - name: Install Arduino core
+    #   run: |
+    #     arduino-cli core update-index
+    #     arduino-cli core install arduino:avr
+
+    # - name: Compile Arduino sketch
+    #   run: |
+    #     arduino-cli compile --fqbn arduino:avr:uno path/to/your/sketch
+
+    # - name: Export compiled binary
+    #   run: |
+    #     mkdir -p artifacts
+    #     cp path/to/your/sketch/your_sketch.ino.hex artifacts/
+
+    # - name: Upload the compiled binary as an artifact
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: arduino-binary
+    #     path: artifacts/your_sketch.ino.hex
