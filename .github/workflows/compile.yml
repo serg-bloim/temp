@@ -38,7 +38,7 @@ jobs:
     - name: Compile Arduino sketch
       working-directory: ./ps4rc
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 .
+        arduino-cli compile -e --fqbn esp32:esp32:esp32doit-devkit-v1 .
 
     - name: Check repo
       working-directory: ./ps4rc
