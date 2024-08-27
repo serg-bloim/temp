@@ -17,6 +17,10 @@ jobs:
         repository: serg-bloim/ps4rc  # Replace with the target repository
         token: ${{ secrets.GITHUB_TOKEN }}  # GitHub Actions automatically provides a token
         path: data  # Directory where the repo will be checked out
+    
+    - name: Check repo
+      run: |
+        ls -la data
 
     # - name: Set up Arduino CLI
     #   uses: arduino/arduino-cli-action@v1
@@ -25,21 +29,21 @@ jobs:
 
     # - name: Install Arduino libraries
     #   run: |
-    #     arduino-cli lib install "SomeLibrary"
+    #     arduino-cli lib install EspSoftwareSerial@8.1.0 PS4Controller@1.0.8 CRC@1.0.3
 
     # - name: Install Arduino core
     #   run: |
     #     arduino-cli core update-index
-    #     arduino-cli core install arduino:avr
+    #     arduino-cli core install esp32:esp32@2.0.11
 
     # - name: Compile Arduino sketch
     #   run: |
-    #     arduino-cli compile --fqbn arduino:avr:uno path/to/your/sketch
+    #     arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 ./
 
     # - name: Export compiled binary
     #   run: |
     #     mkdir -p artifacts
-    #     cp path/to/your/sketch/your_sketch.ino.hex artifacts/
+    #     cp ./your_sketch.ino.hex artifacts/
 
     # - name: Upload the compiled binary as an artifact
     #   uses: actions/upload-artifact@v3
