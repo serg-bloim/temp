@@ -16,7 +16,7 @@ jobs:
       with:
         repository: serg-bloim/ps4rc  # Replace with the target repository
         token: ${{ secrets.GITHUB_TOKEN }}  # GitHub Actions automatically provides a token
-        path: /data  # Directory where the repo will be checked out
+        path: data  # Directory where the repo will be checked out
 
     # - name: Set up Arduino CLI
     #   uses: arduino/arduino-cli-action@v1
