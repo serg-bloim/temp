@@ -36,7 +36,7 @@ jobs:
 
     - name: Compile Arduino sketch
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 data/
+        arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 data/ps4rc.ino
 
     - name: Export compiled binary
       run: |
