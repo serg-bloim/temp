@@ -40,6 +40,11 @@ jobs:
       run: |
         arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 .
 
+    - name: Check repo
+      working-directory: ./ps4rc
+      run: |
+        ls -la .
+
     - name: Export compiled binary
       working-directory: ./ps4rc
       run: |
