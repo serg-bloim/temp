@@ -22,31 +22,31 @@ jobs:
       run: |
         ls -la data
 
-    # - name: Set up Arduino CLI
-    #   uses: arduino/arduino-cli-action@v1
-    #   with:
-    #     version: '0.26.0' # Specify the Arduino CLI version
+    - name: Set up Arduino CLI
+      uses: arduino/arduino-cli-action@v1
+      with:
+        version: '0.26.0' # Specify the Arduino CLI version
 
-    # - name: Install Arduino libraries
-    #   run: |
-    #     arduino-cli lib install EspSoftwareSerial@8.1.0 PS4Controller@1.0.8 CRC@1.0.3
+    - name: Install Arduino libraries
+      run: |
+        arduino-cli lib install EspSoftwareSerial@8.1.0 PS4Controller@1.0.8 CRC@1.0.3
 
-    # - name: Install Arduino core
-    #   run: |
-    #     arduino-cli core update-index
-    #     arduino-cli core install esp32:esp32@2.0.11
+    - name: Install Arduino core
+      run: |
+        arduino-cli core update-index
+        arduino-cli core install esp32:esp32@2.0.11
 
-    # - name: Compile Arduino sketch
-    #   run: |
-    #     arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 ./
+    - name: Compile Arduino sketch
+      run: |
+        arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 data/
 
-    # - name: Export compiled binary
-    #   run: |
-    #     mkdir -p artifacts
-    #     cp ./your_sketch.ino.hex artifacts/
+    - name: Export compiled binary
+      run: |
+        mkdir -p artifacts
+        cp data/ps4rc.ino.hex artifacts/
 
-    # - name: Upload the compiled binary as an artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: arduino-binary
-    #     path: artifacts/your_sketch.ino.hex
+    - name: Upload the compiled binary as an artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: arduino-binary
+        path: artifacts/ps4rc.ino.hex
