@@ -23,7 +23,7 @@ jobs:
         ls -la data
 
     - name: Set up Arduino CLI
-      uses: arduino/arduino-cli-action@v1
+      uses: arduino/setup-arduino-cli@v1.0.0
       with:
         version: '0.26.0' # Specify the Arduino CLI version
 
