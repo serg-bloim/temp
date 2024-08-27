@@ -43,7 +43,7 @@ jobs:
     - name: Check repo
       working-directory: ./ps4rc
       run: |
-        ls -la .
+        ls -la build
 
     - name: Export compiled binary
       working-directory: ./ps4rc
