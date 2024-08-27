@@ -10,18 +10,6 @@ jobs:
     steps:
     # - name: Checkout code
     #   uses: actions/checkout@v4
-
-    - name: Checkout another repository
-      uses: actions/checkout@v4
-      with:
-        repository: serg-bloim/ps4rc  # Replace with the target repository
-        token: ${{ secrets.GITHUB_TOKEN }}  # GitHub Actions automatically provides a token
-        path: data  # Directory where the repo will be checked out
-    
-    - name: Check repo
-      run: |
-        ls -la data
-
     - name: Set up Arduino CLI
       uses: arduino/setup-arduino-cli@v2
 
@@ -34,14 +22,29 @@ jobs:
         arduino-cli core update-index
         arduino-cli core install esp32:esp32@2.0.11
 
-    - name: Compile Arduino sketch
+    - name: Checkout another repository
+      uses: actions/checkout@v4
+      with:
+        repository: serg-bloim/ps4rc  # Replace with the target repository
+        token: ${{ secrets.GITHUB_TOKEN }}  # GitHub Actions automatically provides a token
+        path: ps4rc  # Directory where the repo will be checked out
+    
+    - name: Check repo
+      working-directory: ./ps4rc
       run: |
-        arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 data/ps4rc.ino
+        ls -la .
+
+
+    - name: Compile Arduino sketch
+      working-directory: ./ps4rc
+      run: |
+        arduino-cli compile --fqbn esp32:esp32:esp32doit-devkit-v1 .
 
     - name: Export compiled binary
+      working-directory: ./ps4rc
       run: |
         mkdir -p artifacts
-        cp data/ps4rc.ino.hex artifacts/
+        cp ps4rc.ino.hex ../artifacts/
 
     - name: Upload the compiled binary as an artifact
       uses: actions/upload-artifact@v3
