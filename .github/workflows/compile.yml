@@ -55,6 +55,7 @@ jobs:
         esp32_boot_file=~/.arduino15/packages/esp32/hardware/esp32/2.0.11/tools/partitions/boot_app0.bin
         dst=arch
         mkdir -p $dst
+        mkdir -p ../artifacts
         cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.bootloader.bin                   $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partA_0x1000.bin
         cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.partitions.bin                   $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partB_0x8000.bin
         cp ~/.arduino15/packages/esp32/hardware/esp32/2.0.11/tools/partitions/boot_app0.bin $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partC_0xE000.bin
