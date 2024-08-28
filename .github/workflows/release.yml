@@ -3,7 +3,7 @@ name: Release
 on:
   workflow_dispatch: {}
   release:
-    types: [unpublished, published, released, created]
+    types: [published]
 
 permissions:
   contents: write
