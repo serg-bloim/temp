@@ -3,15 +3,16 @@ name: Pull request
 on: [pull_request,workflow_dispatch]
 
 jobs:
-  # build:
-  #   uses: ./.github/workflows/compile.yml
+  build:
+    uses: ./.github/workflows/compile.yml
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/compile.yml
       - uses: actions/download-artifact@v4
         with:
           path: ./dwld/
       - run: |
           ls -la ./dwld/
+    needs:
+      - build
         
