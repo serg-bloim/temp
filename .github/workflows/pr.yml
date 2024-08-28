@@ -8,11 +8,13 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
+      - run: |
+          sleep 10
       - uses: actions/download-artifact@v4
         with:
-          path: ./dwld/
+          path: dwld
       - run: |
-          ls -la ./dwld/
+          ls -la dwld
     needs:
       - build
         
