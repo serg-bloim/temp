@@ -49,7 +49,7 @@ jobs:
       working-directory: ./ps4rc
       run: |
         mkdir -p artifacts
-        cp build ../artifacts/
+        cp -r build ../artifacts/
 
     - name: Upload the compiled binary as an artifact
       uses: actions/upload-artifact@v3
