@@ -16,7 +16,7 @@ jobs:
     - name: Test1
       working-directory: ./ps4rc
       run: |
-        ls -la ~/
+        ls -la /home/runner/
         ls -la ~/.arduino15
         ls -la ~/.arduino15/packages/
         ls -la ~/.arduino15/packages/esp32/
