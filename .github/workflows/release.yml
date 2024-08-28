@@ -6,6 +6,11 @@ on:
     types: [unpublished, published, released]
 
 jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: env | sort
   build:
     uses: ./.github/workflows/compile.yml
   upload:
