@@ -1,0 +1,9 @@
+name: Pull request
+
+on: 
+  pull_request
+
+jobs:
+  call-reusable-workflow:
+    uses: ./.github/workflows/compile.yml
+
