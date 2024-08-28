@@ -1,13 +1,13 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: {}
   release:
     types: [unpublished, published, released]
 
 jobs:
   build:
-    uses: .github/workflows/compile.yml
+    uses: ./.github/workflows/compile.yml
   upload:
     runs-on: ubuntu-latest
     steps:
