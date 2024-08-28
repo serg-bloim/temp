@@ -58,5 +58,5 @@ jobs:
     - name: Upload the compiled binary as an artifact
       uses: actions/upload-artifact@v3
       with:
-        name: arduino-binary
+        name: ps4rc_${GITHUB_REF_NAME}_${flavor}
         path: artifacts/
