@@ -61,5 +61,5 @@ jobs:
     - name: Upload the compiled binary as an artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ps4rc_${{ matrix.serial_mode }}
+        name: ps4rc_${{ github.ref_name }}_${{ matrix.serial_mode }}
         path: artifacts/
