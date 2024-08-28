@@ -14,7 +14,6 @@ jobs:
     #   uses: actions/checkout@v4
 
     # - name: Test1
-    #   working-directory: ./ps4rc
     #   run: |
     #     ls -la /home/runner/
     #     ls -la ~/.arduino15
@@ -27,7 +26,6 @@ jobs:
       uses: arduino/setup-arduino-cli@v2
       
     - name: Test1
-      working-directory: ./ps4rc
       run: |
         which arduino-cli
 
@@ -39,6 +37,14 @@ jobs:
       run: |
         arduino-cli core update-index
         arduino-cli core install esp32:esp32@2.0.11 --log --log-level debug
+
+    - name: Test1
+      run: |
+        ls -la /home/runner/
+        ls -la ~/.arduino15
+        ls -la ~/.arduino15/packages/
+        ls -la ~/.arduino15/packages/esp32/
+        ls -la ~/.arduino15/packages/esp32/tools
 
     - name: Checkout another repository
       uses: actions/checkout@v4
