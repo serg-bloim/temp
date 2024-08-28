@@ -1,7 +1,6 @@
 name: Arduino Build
 
-on:
-  workflow_dispatch
+on: [workflow_dispatch, workflow_call]
 env:
   flavor: 'sbus'
 jobs:
