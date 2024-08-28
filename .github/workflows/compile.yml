@@ -7,6 +7,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        serial_mode: [SBUS, SRXL]
+    
     steps:
 
     - name: Set up Arduino CLI
@@ -36,7 +40,7 @@ jobs:
     - name: Compile Arduino sketch
       working-directory: ./ps4rc
       run: |
-        arduino-cli compile -e --fqbn esp32:esp32:esp32doit-devkit-v1 .
+        arduino-cli compile -e --fqbn esp32:esp32:esp32doit-devkit-v1 --build-property compiler.cpp.extra_flags=-DSERIAL_MODE=${{ matrix.serial_mode }} .
 
     - name: Check repo
       working-directory: ./ps4rc
@@ -49,13 +53,13 @@ jobs:
         esp32_boot_file=~/.arduino15/packages/esp32/hardware/esp32/2.0.11/tools/partitions/boot_app0.bin
         dst=../artifacts
         mkdir -p $dst
-        cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.bootloader.bin                   $dst/ps4rc_${GITHUB_REF_NAME}_${flavor}_partA_0x1000.bin
-        cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.partitions.bin                   $dst/ps4rc_${GITHUB_REF_NAME}_${flavor}_partB_0x8000.bin
-        cp ~/.arduino15/packages/esp32/hardware/esp32/2.0.11/tools/partitions/boot_app0.bin $dst/ps4rc_${GITHUB_REF_NAME}_${flavor}_partC_0xE000.bin
-        cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.bin                              $dst/ps4rc_${GITHUB_REF_NAME}_${flavor}_partD_0x10000.bin
+        cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.bootloader.bin                   $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partA_0x1000.bin
+        cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.partitions.bin                   $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partB_0x8000.bin
+        cp ~/.arduino15/packages/esp32/hardware/esp32/2.0.11/tools/partitions/boot_app0.bin $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partC_0xE000.bin
+        cp build/esp32.esp32.esp32doit-devkit-v1/ps4rc.ino.bin                              $dst/ps4rc_${GITHUB_REF_NAME}_${{ matrix.serial_mode }}_partD_0x10000.bin
 
     - name: Upload the compiled binary as an artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ps4rc_${{ env.flavor }}
+        name: ps4rc_${{ matrix.serial_mode }}
         path: artifacts/
