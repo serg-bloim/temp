@@ -45,7 +45,7 @@ jobs:
         ls -la ~/.arduino15/packages/
         ls -la ~/.arduino15/packages/esp32/
         ls -la ~/.arduino15/packages/esp32/tools
-        ls -la ~/.arduino15/packages/esp32/hardware/esp32/2.0.11/tools/partitions
+        ls -la ${esp32partitionsdir}
 
     - name: Checkout another repository
       uses: actions/checkout@v4
