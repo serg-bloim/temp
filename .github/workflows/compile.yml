@@ -19,7 +19,7 @@ jobs:
     - name: Install Arduino core
       run: |
         arduino-cli core update-index
-        arduino-cli core install esp32:esp32@2.0.11 --log --log-level debug
+        arduino-cli core install esp32:esp32@2.0.11
 
     - name: Checkout another repository
       uses: actions/checkout@v4
