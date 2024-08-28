@@ -3,7 +3,7 @@ name: Release
 on:
   workflow_dispatch: {}
   release:
-    types: [unpublished, published, released]
+    types: [unpublished, published, released, created]
 
 jobs:
   debug:
@@ -22,7 +22,7 @@ jobs:
       - run: |
           find .
       - run: |
-          gh release upload ${{ github.event.release.tag_name }} dwld/**/*.zip
+          gh release upload -R ${GITHUB_REPOSITORY} ${{ github.event.release.tag_name }} dwld/**/*.zip
         env:
           GH_TOKEN: ${{ github.token }}
     needs:
