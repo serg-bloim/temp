@@ -5,6 +5,9 @@ on:
   release:
     types: [unpublished, published, released, created]
 
+permissions:
+  contents: write
+  
 jobs:
   debug:
     runs-on: ubuntu-latest
